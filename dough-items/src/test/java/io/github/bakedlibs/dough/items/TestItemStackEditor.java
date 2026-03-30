@@ -11,10 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -28,12 +25,18 @@ class TestItemStackEditor {
 
     @BeforeAll
     public static void init() {
-        MockBukkit.mock();
+        try {
+            MockBukkit.mock();
+        } catch (RuntimeException | LinkageError ex) {
+            Assumptions.assumeTrue(false, "MockBukkit unsupported for current Paper version: " + ex);
+        }
     }
 
     @AfterAll
     public static void teardown() {
-        MockBukkit.unmock();
+        if (MockBukkit.isMocked()) {
+            MockBukkit.unmock();
+        }
     }
 
     private static Stream<Material> itemMaterials() {

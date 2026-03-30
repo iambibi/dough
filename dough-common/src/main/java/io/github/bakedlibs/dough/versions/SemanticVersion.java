@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 import io.github.bakedlibs.dough.common.CommonPatterns;
 
@@ -275,7 +275,7 @@ public class SemanticVersion implements Version {
      * will be thrown.
      * <p>
      * Note that the String should follow the {@link SemanticVersion} convention, such as
-     * {@literal "1.0.2"}, {@literal "1.2.10"}, {@literal "1.3.0"} or {@literal "1.1"} to name
+     * {@literal "1.0.2"}, {@literal "1.2.10"}, {@literal "1.4.0"} or {@literal "1.1"} to name
      * a few examples.
      * 
      * @param version
@@ -284,8 +284,9 @@ public class SemanticVersion implements Version {
      * @return The resulting {@link SemanticVersion}
      */
     public static @Nonnull SemanticVersion parse(@Nonnull String version) {
-        Validate.notNull(version, "The version should not be null.");
-
+        if (version == null || version.isBlank()) {
+            throw new IllegalArgumentException("The version cannot be null or blank.");
+        }
         // Create a Matcher from our semver regex
         Matcher matcher = CommonPatterns.SEMANTIC_VERSIONS.matcher(version);
 

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * This {@link Version} implementation consists of two components.
@@ -33,7 +33,9 @@ public class PrefixedVersion extends AbstractNumericVersion {
     public PrefixedVersion(@Nonnull String prefix, int version) {
         super(version);
 
-        Validate.notNull(prefix, "The prefix cannot be null.");
+        if (prefix == null || prefix.isBlank()) {
+            throw new IllegalArgumentException("The prefix cannot be null or blank.");
+        }
 
         this.prefix = prefix;
     }
