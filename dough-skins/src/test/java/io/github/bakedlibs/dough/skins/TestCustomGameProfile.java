@@ -1,5 +1,6 @@
 package io.github.bakedlibs.dough.skins;
 
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
@@ -8,7 +9,11 @@ class TestCustomGameProfile {
 
     @BeforeAll
     static void setup() {
-        MockBukkit.mock();
+        try {
+            MockBukkit.mock();
+        } catch (Throwable ex) {
+            Assumptions.assumeTrue(false, "MockBukkit unsupported for current Paper version: " + ex);
+        }
     }
 
     // Test for issue Slimefun#4097

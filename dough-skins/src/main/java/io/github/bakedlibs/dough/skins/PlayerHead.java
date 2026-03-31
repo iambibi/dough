@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -46,16 +47,18 @@ public final class PlayerHead {
      * 
      * @return A new Head Item for the specified Player
      */
-    public static @Nonnull ItemStack getItemStack(@Nonnull PlayerSkin skin) {
+    public static @Nonnull ItemStack getItemStack(@Nonnull PlayerSkin skin) throws UnknownServerVersionException {
         Validate.notNull(skin, "The skin can not be null!");
 
-        return getItemStack(meta -> {
+
+        if (MinecraftVersion.get().isAtLeast(MinecraftVersion.parse("1.21.3"))) {
             try {
-                skin.getProfile().apply(meta);
-            } catch (NoSuchFieldException | IllegalAccessException | UnknownServerVersionException e) {
+                return skin.getProfile().apply(getItemStack());
+            } catch (UnknownServerVersionException e) {
                 e.printStackTrace();
             }
-        });
+        }
+        return new ItemStack(Material.PLAYER_HEAD);
     }
 
     private static @Nonnull ItemStack getItemStack(@Nonnull Consumer<SkullMeta> consumer) {
@@ -63,6 +66,11 @@ public final class PlayerHead {
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         consumer.accept(meta);
         item.setItemMeta(meta);
+        return item;
+    }
+
+    private static @Nonnull ItemStack getItemStack() {
+        ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         return item;
     }
 
@@ -79,9 +87,9 @@ public final class PlayerHead {
         }
 
         try {
-            GameProfile profile = skin.getProfile();
+            GameProfile profile = skin.getProfile().getGameProfile();
             adapter.setGameProfile(block, profile, sendBlockUpdate);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (UnknownServerVersionException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }

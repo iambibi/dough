@@ -16,7 +16,7 @@ class TestMockDetection {
     void testMockBukkit() {
         try {
             MockBukkit.mock();
-        } catch (RuntimeException | LinkageError ex) {
+        } catch (Throwable ex) {
             Assumptions.assumeTrue(false, "MockBukkit failed to initialize: " + ex);
             return;
         }

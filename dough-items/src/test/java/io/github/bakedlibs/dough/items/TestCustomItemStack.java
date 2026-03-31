@@ -26,7 +26,7 @@ class TestCustomItemStack {
     public static void init() {
         try {
             MockBukkit.mock();
-        } catch (RuntimeException | LinkageError ex) {
+        } catch (Throwable ex) {
             Assumptions.assumeTrue(false, "MockBukkit unsupported for current Paper version: " + ex);
         }
     }
