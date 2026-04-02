@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
 import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.Material;
@@ -53,7 +54,7 @@ public final class PlayerHead {
 
         if (MinecraftVersion.get().isAtLeast(MinecraftVersion.parse("1.21.3"))) {
             try {
-                return skin.getProfile().apply(getItemStack());
+                return skin.getProfile().apply(ItemStack.of(Material.PLAYER_HEAD));
             } catch (UnknownServerVersionException e) {
                 e.printStackTrace();
             }
@@ -66,11 +67,6 @@ public final class PlayerHead {
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         consumer.accept(meta);
         item.setItemMeta(meta);
-        return item;
-    }
-
-    private static @Nonnull ItemStack getItemStack() {
-        ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         return item;
     }
 
@@ -87,8 +83,8 @@ public final class PlayerHead {
         }
 
         try {
-            GameProfile profile = skin.getProfile().getGameProfile();
-            adapter.setGameProfile(block, profile, sendBlockUpdate);
+            PlayerProfile profile = skin.getProfile().getPlayerProfile();
+            adapter.setPlayerProfile(block, profile, sendBlockUpdate);
         } catch (UnknownServerVersionException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

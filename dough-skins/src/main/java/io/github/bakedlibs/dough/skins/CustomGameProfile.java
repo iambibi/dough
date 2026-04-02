@@ -14,11 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.profile.PlayerTextures;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
-import com.mojang.authlib.properties.PropertyMap;
-
-import io.github.bakedlibs.dough.reflection.ReflectionUtils;
 import io.github.bakedlibs.dough.versions.MinecraftVersion;
 import io.github.bakedlibs.dough.versions.UnknownServerVersionException;
 
@@ -33,49 +28,39 @@ public final class CustomGameProfile {
     /**
      * The skin's property key.
      */
-    private static final String PROPERTY_KEY = "textures";
-
-    private final GameProfile gameProfile;
-    private final URL skinUrl;
+    private final PlayerProfile playerProfile;
     private final String texture;
 
     CustomGameProfile(@Nonnull UUID uuid, @Nullable String texture, @Nonnull URL url) {
-        this.gameProfile = new GameProfile(uuid, PLAYER_NAME);
-        this.skinUrl = url;
         this.texture = texture;
+        PlayerProfile playerProfile = Bukkit.createProfile(uuid, PLAYER_NAME);
+        PlayerTextures playerTextures = playerProfile.getTextures();
+        playerTextures.setSkin(url);
+        playerProfile.setTextures(playerTextures);
+        this.playerProfile = playerProfile;
     }
 
     ItemStack apply(@Nonnull ItemStack item) throws UnknownServerVersionException {
-        // setOwnerProfile was added in 1.18, but getOwningPlayer throws a NullPointerException since 1.20.2
         if (MinecraftVersion.get().isAtLeast(MinecraftVersion.parse("1.21.3"))) {
-            PlayerProfile playerProfile = Bukkit.createProfile(this.getId(), PLAYER_NAME);
-            PlayerTextures playerTextures = playerProfile.getTextures();
-            playerTextures.setSkin(this.skinUrl);
-            playerProfile.setTextures(playerTextures);
-            item.setData(DataComponentTypes.PROFILE, ResolvableProfile.resolvableProfile(playerProfile));
+            item.setData(DataComponentTypes.PROFILE, ResolvableProfile.resolvableProfile(this.playerProfile));
         }
 
         return item;
     }
 
     @Nonnull
-    public GameProfile getGameProfile() {
-        return gameProfile;
+    public PlayerProfile getPlayerProfile() {
+        return playerProfile;
     }
 
     @Nonnull
     public UUID getId() {
-        return gameProfile.id();
+        return playerProfile.getId();
     }
 
     @Nullable
     public String getName() {
-        return gameProfile.name();
-    }
-
-    @Nonnull
-    public PropertyMap getProperties() {
-        return gameProfile.properties();
+        return playerProfile.getName();
     }
 
     /**

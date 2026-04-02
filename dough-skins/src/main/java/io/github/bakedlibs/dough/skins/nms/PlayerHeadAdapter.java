@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
 import io.github.bakedlibs.dough.versions.UnknownServerVersionException;
 import org.bukkit.block.Block;
 
@@ -16,7 +17,7 @@ import io.github.bakedlibs.dough.common.DoughLogger;
 public interface PlayerHeadAdapter {
 
     @ParametersAreNonnullByDefault
-    void setGameProfile(Block block, GameProfile profile, boolean sendBlockUpdate) throws IllegalAccessException, InvocationTargetException, InstantiationException, UnknownServerVersionException;
+    void setPlayerProfile(Block block, PlayerProfile profile, boolean sendBlockUpdate) throws IllegalAccessException, InvocationTargetException, InstantiationException, UnknownServerVersionException;
 
     public static @Nullable PlayerHeadAdapter get() {
         try {
