@@ -48,16 +48,16 @@ public final class PlayerHead {
      * 
      * @return A new Head Item for the specified Player
      */
-    public static @Nonnull ItemStack getItemStack(@Nonnull PlayerSkin skin) throws UnknownServerVersionException {
+    public static @Nonnull ItemStack getItemStack(@Nonnull PlayerSkin skin) {
         Validate.notNull(skin, "The skin can not be null!");
 
-
-        if (MinecraftVersion.get().isAtLeast(MinecraftVersion.parse("1.21.3"))) {
-            try {
+        try {
+            if (MinecraftVersion.get().isAtLeast(MinecraftVersion.parse("1.21.3"))) {
                 return skin.getProfile().apply(ItemStack.of(Material.PLAYER_HEAD));
-            } catch (UnknownServerVersionException e) {
-                e.printStackTrace();
             }
+        } catch (UnknownServerVersionException e) {
+            e.printStackTrace();
+            return new ItemStack(Material.PLAYER_HEAD);
         }
         return new ItemStack(Material.PLAYER_HEAD);
     }
