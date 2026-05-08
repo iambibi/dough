@@ -1,10 +1,10 @@
 package io.github.bakedlibs.dough.blocks;
 
-import be.seeseemelk.mockbukkit.WorldMock;
 import org.bukkit.World;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
+import org.mockbukkit.mockbukkit.world.WorldMock;
 
 class TestBlockPosition {
 

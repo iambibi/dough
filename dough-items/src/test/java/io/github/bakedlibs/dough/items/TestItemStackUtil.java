@@ -1,9 +1,6 @@
 package io.github.bakedlibs.dough.items;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.inventory.meta.ItemMetaMock;
-import be.seeseemelk.mockbukkit.inventory.meta.LeatherArmorMetaMock;
-import be.seeseemelk.mockbukkit.inventory.meta.PotionMetaMock;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -17,6 +14,10 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockbukkit.mockbukkit.MockBukkit;
+import org.mockbukkit.mockbukkit.inventory.meta.ItemMetaMock;
+import org.mockbukkit.mockbukkit.inventory.meta.LeatherArmorMetaMock;
+import org.mockbukkit.mockbukkit.inventory.meta.PotionMetaMock;
 
 import java.util.List;
 import java.util.stream.Collectors;

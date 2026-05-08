@@ -1,7 +1,5 @@
 package io.github.bakedlibs.dough.items;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.UnimplementedOperationException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -14,6 +12,8 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockbukkit.mockbukkit.MockBukkit;
+import org.mockbukkit.mockbukkit.exception.UnimplementedOperationException;
 
 import java.util.Arrays;
 import java.util.List;

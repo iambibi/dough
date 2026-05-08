@@ -6,9 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.bukkit.Server;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
+import org.mockbukkit.mockbukkit.MockBukkit;
 import org.mockito.Mockito;
-
-import be.seeseemelk.mockbukkit.MockBukkit;
 
 class TestMockDetection {
 
