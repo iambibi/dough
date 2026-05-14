@@ -36,14 +36,6 @@
             <url>https://maven.playpro.com/</url>
         </repository>
         <repository>
-            <id>redprotect-repo</id>
-            <url>https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/</url>
-        </repository>
-        <repository>
-            <id>FactionsUUID-repo</id>
-            <url>https://ci.ender.zone/plugin/repository/everything/</url>
-        </repository>
-        <repository>
             <id>codemc-repo</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
         </repository>
@@ -54,10 +46,6 @@
         <repository>
             <id>funnyguilds-repo</id>
             <url>https://repo.panda-lang.org/releases</url>
-        </repository>
-        <repository>
-            <id>logblock-repo</id>
-            <url>https://www.iani.de/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
             <id>william278-repo</id>
@@ -181,37 +169,11 @@
             </exclusions>
         </dependency>
 
-        <!-- LWC -->
-        <dependency>
-            <groupId>com.github.dmulloy2.LWC</groupId>
-            <artifactId>lwc</artifactId>
-            <version>master-4.5.1-g2100b5e-18</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- FactionsUUID -->
         <dependency>
             <groupId>me.lucko</groupId>
             <artifactId>helper</artifactId>
             <version>5.6.14</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>Factions</artifactId>
-            <version>1.6.9.5-4.1.4-STABLE</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -276,60 +238,6 @@
                     <artifactId>plotsquared-core</artifactId>
                     <groupId>*</groupId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- RedProtect -->
-        <dependency>
-            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
-            <artifactId>RedProtect-Core</artifactId>
-            <version>7.7.3</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>br.net.fabiozumbi12.RedProtect</groupId>
-            <artifactId>RedProtect-Spigot</artifactId>
-            <version>7.7.3</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- BentoBox -->
-        <dependency>
-            <groupId>world.bentobox</groupId>
-            <artifactId>bentobox</artifactId>
-            <version>1.20.1</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- BlockLocker -->
-        <dependency>
-            <groupId>nl.rutgerkok</groupId>
-            <artifactId>blocklocker</artifactId>
-            <version>1.10.4</version>
-            <scope>provided</scope>
-            <exclusions>
                 <exclusion>
                     <artifactId>bukkit</artifactId>
                     <groupId>*</groupId>
@@ -411,34 +319,5 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- ShopChest -->
-        <dependency>
-            <groupId>de.epiceric</groupId>
-            <artifactId>ShopChest</artifactId>
-            <version>1.13-SNAPSHOT</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Bolt -->
-        <dependency>
-            <groupId>org.popcraft</groupId>
-            <artifactId>bolt-bukkit</artifactId>
-            <version>1.0.580</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
-
 </project>
