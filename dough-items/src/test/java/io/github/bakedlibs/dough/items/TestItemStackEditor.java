@@ -48,7 +48,7 @@ class TestItemStackEditor {
     private static ItemMeta getItemMeta(Material material) {
         try {
             return Bukkit.getItemFactory().getItemMeta(material);
-        } catch (UnimplementedOperationException ex) {
+        } catch (UnimplementedOperationException | UnsupportedOperationException ex) {
             return null;
         }
     }

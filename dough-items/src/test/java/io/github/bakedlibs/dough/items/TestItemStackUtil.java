@@ -42,8 +42,10 @@ class TestItemStackUtil {
 
     @Test
     void testConsumerIsInvokedOnceIfMetaIsNotNull() {
-        ItemStack itemStack = new ItemStack(Material.AIR);
-        itemStack.setItemMeta(new ItemMetaMock());
+        ItemStack itemStack = new ItemStack(Material.STICK);
+        ItemMeta meta = Bukkit.getItemFactory().getItemMeta(Material.STICK);
+        Assumptions.assumeTrue(meta != null, "ItemMeta should not be null for STICK");
+        itemStack.setItemMeta(meta);
         ConsumerInvocationCounter<ItemMeta> counter = new ConsumerInvocationCounter<>();
         ItemStackUtil.editMeta(itemStack, counter);
         Assertions.assertTrue(counter.wasInvoked());

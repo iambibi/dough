@@ -47,12 +47,12 @@ public class MinecraftVersion extends SemanticVersion {
     /**
      * This attempts to get the {@link MinecraftVersion} on which the given {@link Server}
      * is currently running on.
-     * 
+     *
      * @param server
      *            The {@link Server} instance
-     * 
+     *
      * @return The current {@link MinecraftVersion}
-     * 
+     *
      * @throws UnknownServerVersionException
      *             This exception is thrown when the {@link Server} version could not be identified
      */
@@ -61,10 +61,13 @@ public class MinecraftVersion extends SemanticVersion {
         String bukkitVersion = server.getBukkitVersion();
 
         try {
-            // Strip away the later "-R0.1-SNAPSHOT" part
-            String minecraftVersion = CommonPatterns.DASH.split(bukkitVersion)[0];
+            // Find the first semantic version to support both legacy and build-style formats.
+            java.util.regex.Matcher matcher = CommonPatterns.SEMANTIC_VERSIONS.matcher(bukkitVersion);
+            if (!matcher.find() || matcher.start() != 0) {
+                throw new IllegalArgumentException("Could not parse \"" + bukkitVersion + "\" as a semantic version.");
+            }
 
-            // Parse this like any other semantic version
+            String minecraftVersion = matcher.group(0);
             return new MinecraftVersion(SemanticVersion.parse(minecraftVersion));
         } catch (Exception x) {
             // Something failed.

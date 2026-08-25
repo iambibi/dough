@@ -47,7 +47,9 @@ class TestMinecraftVersion {
             Arguments.of("1.14-pre5-SNAPSHOT",      1, 14, 0),
             Arguments.of("1.15-R0.1-SNAPSHOT",      1, 15, 0),
             Arguments.of("1.16.5-R0.1-SNAPSHOT",    1, 16, 5),
-            Arguments.of("1.17-R0.1-SNAPSHOT",      1, 17, 0)
+            Arguments.of("1.17-R0.1-SNAPSHOT",      1, 17, 0),
+            Arguments.of("26.1.2.build.61-stable",  26, 1, 2),
+            Arguments.of("26.2.build.118-stable",  26, 2, 0)
         );
         // @formatter:on
     }

@@ -127,20 +127,6 @@
             </exclusions>
         </dependency>
 
-        <!-- LogBlock -->
-        <dependency>
-            <groupId>de.diddiz</groupId>
-            <artifactId>logblock</artifactId>
-            <version>1.17.0.0-SNAPSHOT</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>*</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- SimpleClans -->
         <dependency>
             <groupId>com.github.marcelo-mason</groupId>

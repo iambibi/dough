@@ -17,7 +17,6 @@ import org.bukkit.plugin.PluginManager;
 
 import io.github.bakedlibs.dough.common.DoughLogger;
 import io.github.bakedlibs.dough.protection.loggers.CoreProtectLogger;
-import io.github.bakedlibs.dough.protection.loggers.LogBlockLogger;
 import io.github.bakedlibs.dough.protection.modules.ChestProtectProtectionModule;
 import io.github.bakedlibs.dough.protection.modules.FunnyGuildsProtectionModule;
 import io.github.bakedlibs.dough.protection.modules.GriefPreventionProtectionModule;
@@ -105,9 +104,6 @@ public final class ProtectionManager {
 
         if (pm.isPluginEnabled("CoreProtect")) {
             registerLogger(new CoreProtectLogger());
-        }
-        if (pm.isPluginEnabled("LogBlock")) {
-            registerLogger(new LogBlockLogger());
         }
     }
 
